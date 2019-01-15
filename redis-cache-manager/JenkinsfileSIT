@@ -25,11 +25,7 @@ podTemplate(label: label,
 	try {
 		
 	  
-	  stage('Get Source') {
-		git url: "http://gitlab.169.56.74.2.nip.io/kos/kos-mvp.git",
-		    credentialsId: 'gitlab',
-		    branch: 'master'
-	  }
+	  
 
 	  def props = readProperties  file:'redis-cache-manager/pipeline.properties'
 	  def tag = props['version']
@@ -41,7 +37,19 @@ podTemplate(label: label,
 	  def selector = props['selector']
 	  def namespace = props['namespace']
 	pipeline {
-	    
+	   
+	 	parameters {
+			string(name: 'version',
+      			description: 'Do the funky chicken!')
+		} 
+	  stage('Get Source') {
+		git url: "http://gitlab.169.56.74.2.nip.io/kos/kos-mvp.git",
+		    credentialsId: 'gitlab',
+		    branch: 'master'
+	  }
+	  stage('Get Tag') {
+		git checkout ${params.version}
+	}
 	  stage('Build Maven project') {
 		container('maven') {
 			dir("redis-cache-manager") {
