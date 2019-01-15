@@ -47,7 +47,7 @@ podTemplate(label: label,
 			dir("retrieve-usagedata-svc") {
 				sh "ls -al"
 				sh "pwd"
-				sh "mvn -B clean package"
+				sh "mvn -B clean package -DskipTests"
 			}
 		}
 	  }
