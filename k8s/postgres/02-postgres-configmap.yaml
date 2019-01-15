@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: engage
+  POSTGRES_USER: kos_user
+  POSTGRES_PASSWORD: new1234!
