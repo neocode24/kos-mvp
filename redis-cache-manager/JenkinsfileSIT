@@ -97,8 +97,8 @@ podTemplate(label: label,
 			sh "kubectl apply -n ${namespace} -f ${service}"
 		 	} 
 		}
-	  }
-	}	*/
+	  }*/
+	}
 //	  notifySuccessful()
 	  } catch(e) {
         currentBuild.result = "FAILED"
