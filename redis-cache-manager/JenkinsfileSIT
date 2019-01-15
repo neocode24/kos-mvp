@@ -1,5 +1,6 @@
+def browser = "test"
 pipeline {
-    environment{
+/*    environment{
 		label = "manage-cache-${UUID.randomUUID().toString()}"
 		props = readProperties  file:'redis-cache-manager/pipeline.properties'
 	  	tag = props['version']
@@ -10,7 +11,7 @@ pipeline {
 	  	service = props['service']
 	  	selector = props['selector']
 	  	namespace = props['namespace']
-}
+}*/
 /*
 def notifyStarted() {
     slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
