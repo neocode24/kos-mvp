@@ -1,3 +1,4 @@
+pipeline { 
 def label = "manage-cache-${UUID.randomUUID().toString()}"
 /*
 def notifyStarted() {
@@ -112,4 +113,5 @@ podTemplate(label: label,
     }
     
   }
+}
 }
