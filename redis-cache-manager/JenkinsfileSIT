@@ -1,4 +1,4 @@
-def label = "usagedata-${UUID.randomUUID().toString()}"
+def label = "manage-cache-${UUID.randomUUID().toString()}"
 /*
 def notifyStarted() {
     slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
@@ -31,7 +31,7 @@ podTemplate(label: label,
 		    branch: 'master'
 	  }
 
-	  def props = readProperties  file:'retrieve-usagedata-svc/pipeline.properties'
+	  def props = readProperties  file:'redis-cache-manager/pipeline.properties'
 	  def tag = props['version']
 	  def gitSrc = props['gitSrc']
 	  def dockerRegistry = props['dockerRegistry']
@@ -44,7 +44,7 @@ podTemplate(label: label,
 	    
 	  stage('Build Maven project') {
 		container('maven') {
-			dir("retrieve-usagedata-svc") {
+			dir("redis-cache-manager") {
 				sh "ls -al"
 				sh "pwd"
 				sh "mvn -B clean package -DskipTests"
@@ -63,7 +63,7 @@ podTemplate(label: label,
 */	  
 	  stage('Build Docker image') {
 		container('docker') {
-			dir("retrieve-usagedata-svc") {
+			dir("redis-cache-manager") {
 		  		docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
 				sh "docker build -t ${image}:${tag} ."
 				sh "docker push ${image}:${tag}"
@@ -80,8 +80,7 @@ podTemplate(label: label,
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 			  
-			  sh "kubectl delete -n ${namespace} -f {deployment} "
-			  sh "kubectl delete -n ${namespace} -f {service} "
+			  sh "kubectl delete deployments -n ${namespace} --selector=app=${selector}"
 		  }
 		}
 	  }
