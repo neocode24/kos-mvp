@@ -12,6 +12,10 @@ def notifyFailed() {
   slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
 }
 */
+parameters {
+ string(name: 'version',
+      description: 'Input version name')
+}
 podTemplate(label: label, 
 	containers: [
 	  containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
@@ -30,8 +34,11 @@ podTemplate(label: label,
 		    credentialsId: 'gitlab',
 		    branch: 'master'
 	  }
+	  stage('Get Tag') { 
+		git checkout ${params.version}
+	  }
 
-	  def props = readProperties  file:'redis-cache-manager/pipeline.properties'
+/*	  def props = readProperties  file:'redis-cache-manager/pipeline.properties'
 	  def tag = props['version']
 	  def gitSrc = props['gitSrc']
 	  def dockerRegistry = props['dockerRegistry']
@@ -51,7 +58,7 @@ podTemplate(label: label,
 			}
 		}
 	  }
-
+*/
 /*	
 	  stage('Inspection Code') {
 		container('maven') {
@@ -61,7 +68,7 @@ podTemplate(label: label,
 		}
 	  }
 */	  
-	  stage('Build Docker image') {
+/*	  stage('Build Docker image') {
 		container('docker') {
 			dir("redis-cache-manager") {
 		  		docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
@@ -97,7 +104,7 @@ podTemplate(label: label,
 		 	} 
 		}
 	  }
-		
+*/		
 //	  notifySuccessful()
 	  } catch(e) {
         currentBuild.result = "FAILED"
