@@ -1,17 +1,4 @@
-def browser = "test"
-pipeline {
-/*    environment{
-		label = "manage-cache-${UUID.randomUUID().toString()}"
-		props = readProperties  file:'redis-cache-manager/pipeline.properties'
-	  	tag = props['version']
-	  	gitSrc = props['gitSrc']
-	  	dockerRegistry = props['dockerRegistry']
-	  	image = props['image']
-	  	deployment = props['deployment']
-	  	service = props['service']
-	  	selector = props['selector']
-	  	namespace = props['namespace']
-}*/
+def label = "manage-cache-${UUID.randomUUID().toString()}"
 /*
 def notifyStarted() {
     slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
@@ -35,8 +22,7 @@ podTemplate(label: label,
 	) {
 	
 	node(label) {
-	
-try {
+	try {
 		
 	  
 	  stage('Get Source') {
@@ -44,7 +30,18 @@ try {
 		    credentialsId: 'gitlab',
 		    branch: 'master'
 	  }
-    
+
+	  def props = readProperties  file:'redis-cache-manager/pipeline.properties'
+	  def tag = props['version']
+	  def gitSrc = props['gitSrc']
+	  def dockerRegistry = props['dockerRegistry']
+	  def image = props['image']
+	  def deployment = props['deployment']
+	  def service = props['service']
+	  def selector = props['selector']
+	  def namespace = props['namespace']
+	pipeline {
+	    
 	  stage('Build Maven project') {
 		container('maven') {
 			dir("redis-cache-manager") {
@@ -64,7 +61,7 @@ try {
 		}
 	  }
 */	  
-/*	  stage('Build Docker image') {
+	  stage('Build Docker image') {
 		container('docker') {
 			dir("redis-cache-manager") {
 		  		docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
@@ -101,7 +98,7 @@ try {
 		 	} 
 		}
 	  }
-*/		
+	}	
 //	  notifySuccessful()
 	  } catch(e) {
         currentBuild.result = "FAILED"
@@ -109,6 +106,4 @@ try {
     }
     
   }
-}
-
 }
