@@ -46,10 +46,11 @@ podTemplate(label: label,
 		git url: "http://gitlab.169.56.74.2.nip.io/kos/kos-mvp.git",
 		    credentialsId: 'gitlab',
 		    branch: 'master'
-	  }
-	  stage('Get Tag') {
 		git checkout ${params.version}
-	}
+	  }
+//	  stage('Get Tag') {
+//		git checkout ${params.version}
+//	}
 	  stage('Build Maven project') {
 		container('maven') {
 			dir("redis-cache-manager") {
