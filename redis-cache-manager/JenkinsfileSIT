@@ -47,6 +47,7 @@ podTemplate(label: label,
 		    credentialsId: 'gitlab',
 		    branch: 'master'
 		sh "git checkout ${params.version}"
+		sh "git log"
 	  }
 //	  stage('Get Tag') {
 //		git checkout ${params.version}
