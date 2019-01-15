@@ -65,6 +65,7 @@ podTemplate(label: label,
 		container('docker') {
 			dir("retrieve-usagedata-db-svc") {
 		  		docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
+				sh "ls -al"	
 				sh "docker build -t ${image}:${tag} ."
 				sh "docker push ${image}:${tag}"
 				sh "docker tag ${image}:${tag} ${image}:latest"
