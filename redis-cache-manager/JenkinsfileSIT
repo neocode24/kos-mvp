@@ -61,7 +61,7 @@ podTemplate(label: label,
 		}
 	  }
 */	  
-	  stage('Build Docker image') {
+	  /*stage('Build Docker image') {
 		container('docker') {
 			dir("redis-cache-manager") {
 		  		docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
@@ -98,7 +98,7 @@ podTemplate(label: label,
 		 	} 
 		}
 	  }
-	}	
+	}	*/
 //	  notifySuccessful()
 	  } catch(e) {
         currentBuild.result = "FAILED"
