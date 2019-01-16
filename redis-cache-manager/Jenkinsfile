@@ -93,7 +93,7 @@ podTemplate(label: label,
 							  credentialsId: 'registry-credentials',
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-			
+			sh " cat ${deployment}"		
                         sh "cat ${deployment}|sed -e s#image:.*#${image}:${tag}#g>${deployment}"
 			sh "cat ${deployment}" 
 			sh "kubectl apply -n ${namespace} -f ${deployment}"
