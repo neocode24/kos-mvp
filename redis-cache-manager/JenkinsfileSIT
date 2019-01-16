@@ -36,6 +36,8 @@ podTemplate(label: label,
 	  def service = props['service']
 	  def selector = props['selector']
 	  def namespace = props['namespace']
+
+	 sh "echo REGISTRY = ${dockerRegistry}"
 	pipeline {
 	   
 	 	parameters {
