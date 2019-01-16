@@ -95,7 +95,7 @@ podTemplate(label: label,
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 			
 			def replace_str=sh "echo ${image}:${tag}"
-                        def replace_str=sh "echo ${replace_str}|sed -e 's/\//\\\//g'"
+                        def replace_str=sh "echo ${replace_str}|sed -e s/\//\\\//g"
                         sh "echo ${deployment}|sed -e s/image:.*/${replace_after}/g>${deployment}"
 	 
 			sh "kubectl apply -n ${namespace} -f ${deployment}"
