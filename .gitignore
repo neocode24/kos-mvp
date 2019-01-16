@@ -2,3 +2,8 @@
 .classpath
 .settings
 target/
+.idea/
+kafka-produce/kafka-produce.iml
+redis-cache-manager/manage-cache.iml
+retrieve-usagedata-db-svc/usagedata-db.iml
+retrieve-usagedata-svc/usagedata.iml
