@@ -1,0 +1,8 @@
+version=1.0.0
+cluster=kos-cluster.icp
+namespace=sit-mvp
+dockerRegistry=https://kos-cluster.icp:8500
+image=kos-cluster.icp:8500/kos-mvp/manage-cache
+deployment=k8s/kos-svc/sit/20-cachemanager-deployment.yaml
+service=k8s/kos-svc/sit/21-cachemanager-service.yaml
+selector=manage-cache

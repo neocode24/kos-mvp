@@ -12,6 +12,8 @@ def notifyFailed() {
   slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
 }
 */
+	   
+
 podTemplate(label: label, 
 	containers: [
 	  containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
@@ -21,13 +23,18 @@ podTemplate(label: label,
 	volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')]
 	) {
 	
+pipeline {
 	node(label) {
 	try {
-		
+		 	parameters {
+			string(name: 'version',
+      			description: 'Enter the Realease Version')
+		} 
+	
 	  
 	  
 
-	  def props = readProperties  file:'redis-cache-manager/pipeline.properties'
+	  def props = readProperties  file:'redis-cache-manager/pipeline.propertiesSIT'
 	  def tag = props['version']
 	  def gitSrc = props['gitSrc']
 	  def dockerRegistry = props['dockerRegistry']
@@ -36,25 +43,21 @@ podTemplate(label: label,
 	  def service = props['service']
 	  def selector = props['selector']
 	  def namespace = props['namespace']
-	pipeline {
-	   
-	 	parameters {
-			string(name: 'version',
-      			description: 'Do the funky chicken!')
-		} 
+
+	 sh "echo REGISTRY = ${dockerRegistry}"
 	  stage('Get Source') {
 		git url: "http://gitlab.169.56.74.2.nip.io/kos/kos-mvp.git",
 		    credentialsId: 'gitlab',
 		    branch: 'master'
+	//	sh "git tag -a ${params.version}"
 		sh "git checkout ${params.version}"
 		sh "git log"
 	  }
-//	  stage('Get Tag') {
-//		git checkout ${params.version}
-//	}
+
 	  stage('Build Maven project') {
 		container('maven') {
 			dir("redis-cache-manager") {
+				sh "echo REGISTRY = ${dockerRegistry}"	
 				sh "ls -al"
 				sh "pwd"
 				sh "mvn -B clean package -DskipTests"
@@ -71,10 +74,11 @@ podTemplate(label: label,
 		}
 	  }
 */	  
-	  /*stage('Build Docker image') {
+	  stage('Build Docker image') {
 		container('docker') {
 			dir("redis-cache-manager") {
 		  		docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
+				sh "la -al"
 				sh "docker build -t ${image}:${tag} ."
 				sh "docker push ${image}:${tag}"
 				sh "docker tag ${image}:${tag} ${image}:latest"
@@ -83,6 +87,7 @@ podTemplate(label: label,
 			}
 		}
 	  }
+
 	  stage( 'Clean Up Existing Deployments' ) {
 		container('kubectl') {
 		  withCredentials([[$class: 'UsernamePasswordMultiBinding',
@@ -95,7 +100,8 @@ podTemplate(label: label,
 		  }
 		}
 	  }
-	  stage( 'Deploy to Cluster' ) {
+	  
+	stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
 		  		withCredentials([[$class: 'UsernamePasswordMultiBinding',
 							  credentialsId: 'registry-credentials',
@@ -107,8 +113,9 @@ podTemplate(label: label,
 			sh "kubectl apply -n ${namespace} -f ${service}"
 		 	} 
 		}
-	  }*/
-	}
+	  }
+
+//	} 
 //	  notifySuccessful()
 	  } catch(e) {
         currentBuild.result = "FAILED"
@@ -116,4 +123,5 @@ podTemplate(label: label,
     }
     
   }
+}
 }
