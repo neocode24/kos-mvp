@@ -14,10 +14,6 @@ def notifyFailed() {
 */
 pipeline {
 	   
-	 	parameters {
-			string(name: 'version',
-      			description: 'Enter the Realease Version')
-		} 
 
 podTemplate(label: label, 
 	containers: [
@@ -30,7 +26,11 @@ podTemplate(label: label,
 	
 	node(label) {
 	try {
-		
+		 	parameters {
+			string(name: 'version',
+      			description: 'Enter the Realease Version')
+		} 
+	
 	  
 	  
 
@@ -53,6 +53,7 @@ podTemplate(label: label,
 		sh "git checkout ${params.version}"
 		sh "git log"
 	  }
+
 	  stage('Build Maven project') {
 		container('maven') {
 			dir("redis-cache-manager") {
@@ -86,6 +87,7 @@ podTemplate(label: label,
 			}
 		}
 	  }
+
 	  stage( 'Clean Up Existing Deployments' ) {
 		container('kubectl') {
 		  withCredentials([[$class: 'UsernamePasswordMultiBinding',
@@ -98,7 +100,8 @@ podTemplate(label: label,
 		  }
 		}
 	  }
-	  stage( 'Deploy to Cluster' ) {
+	  
+	stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
 		  		withCredentials([[$class: 'UsernamePasswordMultiBinding',
 							  credentialsId: 'registry-credentials',
@@ -111,7 +114,8 @@ podTemplate(label: label,
 		 	} 
 		}
 	  }
-	}
+
+//	} 
 //	  notifySuccessful()
 	  } catch(e) {
         currentBuild.result = "FAILED"
