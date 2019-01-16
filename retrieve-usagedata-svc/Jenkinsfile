@@ -23,16 +23,19 @@ podTemplate(label: label,
 	
 	node(label) {
 	try {
+		def commitId
+
 		
 	  
 	  stage('Get Source') {
 		git url: "http://gitlab.169.56.74.2.nip.io/kos/kos-mvp.git",
 		    credentialsId: 'gitlab',
 		    branch: 'master'
+		commitId = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
 	  }
 
 	  def props = readProperties  file:'retrieve-usagedata-svc/pipeline.properties'
-	  def tag = props['version']
+	  def tag = commitId
 	  def gitSrc = props['gitSrc']
 	  def dockerRegistry = props['dockerRegistry']
 	  def image = props['image']
@@ -73,7 +76,7 @@ podTemplate(label: label,
 			}
 		}
 	  }
-	  stage( 'Clean Up Existing Deployments' ) {
+	  /*stage( 'Clean Up Existing Deployments' ) {
 		container('kubectl') {
 		  withCredentials([[$class: 'UsernamePasswordMultiBinding',
 							  credentialsId: 'registry-credentials',
@@ -84,7 +87,7 @@ podTemplate(label: label,
 			  sh "kubectl delete -n ${namespace} -f ${service} "
 		  }
 		}
-	  }
+	  }*/
 	  stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
 		  		withCredentials([[$class: 'UsernamePasswordMultiBinding',
@@ -92,7 +95,8 @@ podTemplate(label: label,
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 			  
-			sh "kubectl apply -n ${namespace} -f ${deployment}"
+			sh "kubectl -n ${namespace} set image deployment ${selector} ${selector}=${image}:${tag}"
+			sh "kubectl -n ${namespace} rollout status deployment ${selector}"	
 			sh "sleep 5"
 			sh "kubectl apply -n ${namespace} -f ${service}"
 		 	} 
