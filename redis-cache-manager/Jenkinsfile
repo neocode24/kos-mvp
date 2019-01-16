@@ -93,8 +93,11 @@ podTemplate(label: label,
 							  credentialsId: 'registry-credentials',
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-			 
-			sh "cat ${deployment}|sed -e 's/image:.*/${dockerRegistry}:${image}:${tag}/g'>${deployment}"
+			
+			def replace_str=sh "echo ${image}:${tag}"
+                        def replace_str=sh "echo ${replace_str}|sed -e 's/\//\\\//g'"
+                        sh "echo ${deployment}|sed -e s/image:.*/${replace_after}/g>${deployment}"
+	 
 			sh "kubectl apply -n ${namespace} -f ${deployment}"
 			sh "sleep 5"
 			sh "kubectl apply -n ${namespace} -f ${service}"
