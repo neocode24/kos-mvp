@@ -41,7 +41,7 @@ podTemplate(label: label,
 	  def service = props['service']
 	  def selector = props['selector']
 	  def namespace = props['namespace']
-
+	  def replacestr
 /*	    
 	  stage('Build Maven project') {
 		container('maven') {
@@ -94,8 +94,9 @@ podTemplate(label: label,
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 			sh " cat ${deployment}"		
-                        sh "sed -i "s#image:.*#image: ${image}:${tag}#g" ${deployment}" 
+                        sh (sed -i "s#image:.*#image: ${image}:${tag}#g" ${deployment}) 
 			sh "cat ${deployment}" 
+			sh 
 			sh "kubectl apply -n ${namespace} -f ${deployment}"
 			sh "sleep 5"
 			sh "kubectl apply -n ${namespace} -f ${service}"
