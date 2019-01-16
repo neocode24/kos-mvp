@@ -12,7 +12,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@RedisHash("usagedata")
+@RedisHash(value="usagedata", timeToLive=60)
 public class UsageData {
 	
 	@Id
