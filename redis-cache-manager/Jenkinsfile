@@ -95,7 +95,7 @@ podTemplate(label: label,
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 			
                         sh "cat ${deployment}|sed -e s#image:.*#${image}:${tag}#g>${deployment}"
-	 
+			sh "cat ${deployment}" 
 			sh "kubectl apply -n ${namespace} -f ${deployment}"
 			sh "sleep 5"
 			sh "kubectl apply -n ${namespace} -f ${service}"
