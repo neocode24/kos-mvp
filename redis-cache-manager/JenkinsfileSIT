@@ -12,7 +12,6 @@ def notifyFailed() {
   slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
 }
 */
-pipeline {
 	   
 
 podTemplate(label: label, 
@@ -24,6 +23,7 @@ podTemplate(label: label,
 	volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')]
 	) {
 	
+pipeline {
 	node(label) {
 	try {
 		 	parameters {
