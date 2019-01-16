@@ -27,7 +27,7 @@ podTemplate(label: label,
 	  
 	  
 
-	  def props = readProperties  file:'redis-cache-manager/pipeline.properties'
+	  def props = readProperties  file:'redis-cache-manager/pipeline.propertiesSIT'
 	  def tag = props['version']
 	  def gitSrc = props['gitSrc']
 	  def dockerRegistry = props['dockerRegistry']
