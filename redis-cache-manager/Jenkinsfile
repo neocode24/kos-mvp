@@ -95,7 +95,7 @@ podTemplate(label: label,
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 			sh " cat ${deployment}"	
 			replacestr = sh "echo 'image: $image:$tag'"	
-                        sh "sed -i 's#image:.*#\1'"$tag"'#g' ${deployment}" 
+                        sh "sed -i 's#image:.*#'"${replacestr}"'#g' ${deployment}" 
 			sh "cat ${deployment}" 
 			sh 
 			sh "kubectl apply -n ${namespace} -f ${deployment}"
