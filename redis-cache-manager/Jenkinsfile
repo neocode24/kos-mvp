@@ -94,7 +94,7 @@ podTemplate(label: label,
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 			sh "kubectl -n ${namespace} set image deployment ${selector} ${selector}=${image}:${tag}"
-              		sh "kubectl -n ${namespace} rollout status deployment mypage-frontend"
+              		sh "kubectl -n ${namespace} rollout status deployment ${selector}"
 		//	sh " cat ${deployment}"	
 		//	replacestr = sh "echo 'image: $image:$tag'"	
                  //       sh '''sed -i "s#image:.*#${replacestr}#g" ${deployment}'''
