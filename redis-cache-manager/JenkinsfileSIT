@@ -73,6 +73,7 @@ podTemplate(label: label,
 		container('docker') {
 			dir("redis-cache-manager") {
 		  		docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
+				sh "la -al"
 				sh "docker build -t ${image}:${tag} ."
 				sh "docker push ${image}:${tag}"
 				sh "docker tag ${image}:${tag} ${image}:latest"
