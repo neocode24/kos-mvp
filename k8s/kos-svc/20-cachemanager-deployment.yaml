@@ -17,7 +17,7 @@ spec:
       containers:
       - name: manage-cache
         image: kos-cluster.icp:8500/kos-mvp/manage-cache
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: "Always"
         env:
           - name: spring.redis.host
             value: "redis"

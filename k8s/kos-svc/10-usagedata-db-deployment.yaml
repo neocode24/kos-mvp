@@ -16,7 +16,7 @@ spec:
       containers:
       - name: usagedata-db
         image: kos-cluster.icp:8500/kos-mvp/usagedata-db
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: "Always"
         env:
           - name: target.service.name
             value: "manage-cache:8080"
