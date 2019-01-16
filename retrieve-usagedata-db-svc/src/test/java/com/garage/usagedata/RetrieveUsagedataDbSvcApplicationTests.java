@@ -2,6 +2,8 @@ package com.garage.usagedata;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDateTime;
+
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +15,9 @@ import com.garage.usagedata.bean.Data_DataSvcDrctlyUseQntList;
 import com.garage.usagedata.bean.Data_UsePtrn3monsRetv;
 import com.garage.usagedata.bean.PK_DataSvcDrctlyUseQntList;
 import com.garage.usagedata.bean.PK_UsePtrn3monsRetv;
+import com.garage.usagedata.bean.ServiceHitHistoryBean;
 import com.garage.usagedata.repository.DataSvcDrctlyUseQntListRepository;
+import com.garage.usagedata.repository.ServiceHitHistoryRepository;
 import com.garage.usagedata.repository.UsePtrn3monsRetvRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +32,9 @@ public class RetrieveUsagedataDbSvcApplicationTests {
 	
 	@Autowired
 	UsePtrn3monsRetvRepository usePtrn3monsRetvRepositoryRepository;
+	
+	@Autowired
+	ServiceHitHistoryRepository serviceHitHistoryRepository;
 
     @After
     public void tearDown() throws Exception {
@@ -50,7 +57,7 @@ public class RetrieveUsagedataDbSvcApplicationTests {
         assertThat(data.getRetvDt()).isEqualTo("20190108");
 	}
 	
-	@Test
+//	@Test
 	public void getData_useptrn3monsretvRepositoryRepository() {
 		String svcContId = "680350947";
 		String retvYm = "201811";
@@ -64,5 +71,6 @@ public class RetrieveUsagedataDbSvcApplicationTests {
 		assertThat(data.getSvcContId()).isEqualTo("680350947");
         assertThat(data.getRetvYm()).isEqualTo("201811");
 	}
+	
 }
 
