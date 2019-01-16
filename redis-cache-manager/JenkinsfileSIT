@@ -40,14 +40,14 @@ podTemplate(label: label,
 	   
 	 	parameters {
 			string(name: 'version',
-      			description: 'Do the funky chicken!')
+      			description: 'Enter the Realease Version')
 		} 
 	  stage('Get Source') {
 		git url: "http://gitlab.169.56.74.2.nip.io/kos/kos-mvp.git",
 		    credentialsId: 'gitlab',
 		    branch: 'master'
-		sh "git tag -a ${params.version}"
-	//	sh "git checkout ${params.version}"
+	//	sh "git tag -a ${params.version}"
+		sh "git checkout ${params.version}"
 		sh "git log"
 	  }
 	  stage('Build Maven project') {
