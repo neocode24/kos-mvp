@@ -23,17 +23,17 @@ public class RedisRepositoryConfig {
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
 
-        RedisSentinelConfiguration configure = new RedisSentinelConfiguration()
-                .master("mymyster")
-                .sentinel("169.56.108.4", 30401)
-                .sentinel("169.56.108.4", 30402)
-                .sentinel("169.56.108.4", 30403);
+//        RedisSentinelConfiguration configure = new RedisSentinelConfiguration()
+//                .master("mymyster")
+//                .sentinel("169.56.108.4", 30401)
+//                .sentinel("169.56.108.4", 30402)
+//                .sentinel("169.56.108.4", 30403);
+//
+//        RedisConnectionFactory redisConnectionFactory = new LettuceConnectionFactory(configure);
+//
+//        return redisConnectionFactory;
 
-        RedisConnectionFactory redisConnectionFactory = new LettuceConnectionFactory(configure);
-
-        return redisConnectionFactory;
-
-//        return new LettuceConnectionFactory(redisHost, redisPort);
+        return new LettuceConnectionFactory(redisHost, redisPort);
     }
 
     @Bean
