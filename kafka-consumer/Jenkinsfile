@@ -76,7 +76,7 @@ podTemplate(label: label,
 			}
 		}
 	  }
-	  stage( 'Clean Up Existing Deployments' ) {
+	  /*stage( 'Clean Up Existing Deployments' ) {
 		container('kubectl') {
 		  withCredentials([[$class: 'UsernamePasswordMultiBinding',
 							  credentialsId: 'registry-credentials',
@@ -87,7 +87,7 @@ podTemplate(label: label,
 			  sh "kubectl delete -n ${namespace} -f ${service}"
 		  }
 		}
-	  }
+	  }*/
 	  stage( 'Deploy to Cluster' ) {
 		container('kubectl') {
 		  		withCredentials([[$class: 'UsernamePasswordMultiBinding',
