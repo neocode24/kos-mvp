@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/kafka-consumer/kafaka-consumer.iml" filepath="$PROJECT_DIR$/kafka-consumer/kafaka-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kafka-produce/kafka-produce.iml" filepath="$PROJECT_DIR$/kafka-produce/kafka-produce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kafka-producer/kafka-producer.iml" filepath="$PROJECT_DIR$/kafka-producer/kafka-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redis-cache-manager/manage-cache.iml" filepath="$PROJECT_DIR$/redis-cache-manager/manage-cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrieve-usagedata-svc/usagedata.iml" filepath="$PROJECT_DIR$/retrieve-usagedata-svc/usagedata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrieve-usagedata-db-svc/usagedata-db.iml" filepath="$PROJECT_DIR$/retrieve-usagedata-db-svc/usagedata-db.iml" />
+    </modules>
+  </component>
+</project>

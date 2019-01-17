@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-producer
+  labels:
+    app: kafka-producer
+spec:
+  type: ClusterIP
+  ports:
+  - name: kafka-producer
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: kafka-producer

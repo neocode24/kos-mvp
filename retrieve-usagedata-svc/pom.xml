@@ -58,6 +58,14 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>3.0.0</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 		
 	</dependencies>
 
@@ -73,8 +81,7 @@
 			    <groupId>com.spotify</groupId>
 			    <artifactId>docker-maven-plugin</artifactId>
 			    <configuration>
-			        <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-			        <dockerDirectory>src/main/docker</dockerDirectory>
+			        <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
 			        <resources>
 			            <resource>
 			                <targetPath>/</targetPath>

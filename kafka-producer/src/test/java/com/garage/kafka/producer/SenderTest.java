@@ -18,6 +18,11 @@ public class SenderTest {
     @Test
     public void send() {
 
-        sender.send("test test");
+        for ( int i = 0 ; i < 10 ; i++ ) {
+
+            sender.send("{\"ipAddr\":\"127.0.0.1\", \"uriInfo\":\"ddd\", \"svcContId\":\"680350947\", \"svcNo\":\"01029050326\", \"prodId\":\"aaa\", \"succYn\":\"Y\"}");
+        }
+
+
     }
 }

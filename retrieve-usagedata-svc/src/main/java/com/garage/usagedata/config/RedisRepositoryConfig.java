@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
@@ -21,7 +22,18 @@ public class RedisRepositoryConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        return new LettuceConnectionFactory(redisHost, redisPort);
+
+        RedisSentinelConfiguration configure = new RedisSentinelConfiguration()
+                .master("mymyster")
+                .sentinel("169.56.108.4", 30401)
+                .sentinel("169.56.108.4", 30402)
+                .sentinel("169.56.108.4", 30403);
+
+        RedisConnectionFactory redisConnectionFactory = new LettuceConnectionFactory(configure);
+
+        return redisConnectionFactory;
+
+//        return new LettuceConnectionFactory(redisHost, redisPort);
     }
 
     @Bean

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer
+  labels:
+    app: kafka-producer
+spec:
+  selector:
+    matchLabels:
+      app: kafka-producer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+      - name: kafka-producer
+        image: kos-cluster.icp:8500/kos-mvp/kafka-producer
+        imagePullPolicy: "Always"
+        env:
+         - name: target.service.name
+           value: "usagedata-db:8080"
+        ports:
+         - containerPort: 8080
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%

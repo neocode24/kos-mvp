@@ -27,8 +27,9 @@ public class RetrieveUsagedataSvcApplicationTests {
     	usageDataRedisRepository.deleteAll();
     }
 
+
     @Test
-    public void 기본_등록_조회기능() {
+    public void insertSelect() {
         //given
         String key = "usePtrn3monsRetv-680350947-201812";
         LocalDateTime refreshTime = LocalDateTime.now();
@@ -47,6 +48,8 @@ public class RetrieveUsagedataSvcApplicationTests {
         
         assertThat(savedUsageData.getRefreshTime()).isEqualTo(refreshTime);
     }
+
+
 
 }
 
