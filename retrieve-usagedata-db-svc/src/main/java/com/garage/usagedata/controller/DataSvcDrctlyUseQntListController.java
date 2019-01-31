@@ -37,7 +37,18 @@ public class DataSvcDrctlyUseQntListController {
 	
 	@Value("${target.service.name}")
     private String targetServiceName;
-	
+
+	private void makeCacheData(String redisKey, Data_UsePtrn3monsRetv data) {
+		String url = "http://" + targetServiceName + "/cache/create/" + redisKey;
+
+		log.debug("url:" + url);
+
+		// 결과를 Cache Manager로 전달. cache 반영 처리 위임.
+		ResponseEntity<String> cacheResult = restTemplate.postForEntity(url, data, String.class);
+		log.debug("cache result : " + cacheResult.getBody());
+	}
+
+
 	@GetMapping("/{svcContId}/{retvDt}")
 	public ResponseEntity<Data_DataSvcDrctlyUseQntList> getData(@PathVariable("svcContId") String svcContId, @PathVariable("retvDt") String retvDt) {
 		
@@ -49,11 +60,9 @@ public class DataSvcDrctlyUseQntListController {
 			
 			// redisKey는 서비스명 + 호출 PK
 			String redisKey = "dataSvcDrctlyUseQntList" + "-" + svcContId + "-" + retvDt;
-			
-			String url = "http://" + targetServiceName + "/cache/create/" + redisKey;
-			
+
 			// 결과를 Cache Manager로 전달. cache 반영 처리 위임.
-			restTemplate.postForEntity(url, data.get(), Data_DataSvcDrctlyUseQntList.class);
+			makeCacheData(redisKey, data.get());
 						
 			return new ResponseEntity<>(data.get(), HttpStatus.OK);
 		} 
