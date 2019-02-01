@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.garage</groupId>
 	<artifactId>usagedata</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v1.0</version>
 	<name>retrieve-usagedata-svc</name>
 	<description>Retrieve Usage Data</description>
 
@@ -82,6 +82,7 @@
 			    <artifactId>docker-maven-plugin</artifactId>
 			    <configuration>
 			        <imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
+			        <dockerDirectory>src/main/docker</dockerDirectory>
 			        <resources>
 			            <resource>
 			                <targetPath>/</targetPath>
@@ -89,6 +90,7 @@
 			                <include>${project.build.finalName}.jar</include>
 			            </resource>
 			        </resources>
+			        <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
 			    </configuration>
 			</plugin>
 		</plugins>

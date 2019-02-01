@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kafka-producer
-        image: kos-cluster.icp:8500/kos-mvp/kafka-producer
+        image: ktis-bastion01.container.ipc.kt.com:5000/kos-mvp/kafka-producer:v1.0
         imagePullPolicy: "Always"
         env:
          - name: target.service.name

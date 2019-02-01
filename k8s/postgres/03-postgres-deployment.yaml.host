@@ -19,11 +19,9 @@ spec:
             - configMapRef:
                 name: postgres-config
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
+            - mountPath: /var/lib/postgresql/data:z
               name: postgredb
-      securityContext:
-        runAsUser: 65534
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: postgres-pv-nfs-claim
+            claimName: postgres-pv-claim

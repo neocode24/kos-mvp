@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
       - name: usagedata-db
-        image: kos-cluster.icp:8500/kos-mvp/usagedata-db
+        image: ktis-bastion01.container.ipc.kt.com:5000/kos-mvp/usagedata-db:v1.0
         imagePullPolicy: "Always"
         env:
           - name: target.service.name
             value: "manage-cache:8080"
           - name: POSTGRES_ENV_IP
-            value: "postgres-vm"
+            value: "postgres"
           - name: POSTGRES_ENV_PORT
             value: "5432"
           - name: POSTGRES_ENV_DB

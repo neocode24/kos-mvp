@@ -2,6 +2,14 @@ package com.garage.usagedata.remote.bean;
 
 import java.io.Serializable;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class Data_DataSvcDrctlyUseQntList implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,125 +47,28 @@ public class Data_DataSvcDrctlyUseQntList implements Serializable {
 	protected Data_DataSvcDrctlyUseQntList() {
 	}
 
-	public String getSvcContId() {
-		return svcContId;
-	}
 
-	public void setSvcContId(String svcContId) {
+	@Builder
+	public Data_DataSvcDrctlyUseQntList(String svcContId, String retvDt, String prodEfctStDate,
+											String prodEfctFnsDate, String prodId, String prodNm, String ntnlOutnetVcTlkQnt,
+											String billMidCtgCd, String billMidCtgNm, String totUseQnt, String nnRatUseQnt, 
+											String ratUseQnt, String ratAmt, String svcTarif, String bigiDiv) {
+
 		this.svcContId = svcContId;
-	}
-
-	public String getRetvDt() {
-		return retvDt;
-	}
-
-	public void setRetvDt(String retvDt) {
 		this.retvDt = retvDt;
-	}
-
-	public String getProdEfctStDate() {
-		return prodEfctStDate;
-	}
-
-	public void setProdEfctStDate(String prodEfctStDate) {
 		this.prodEfctStDate = prodEfctStDate;
-	}
-
-	public String getProdEfctFnsDate() {
-		return prodEfctFnsDate;
-	}
-
-	public void setProdEfctFnsDate(String prodEfctFnsDate) {
 		this.prodEfctFnsDate = prodEfctFnsDate;
-	}
-
-	public String getProdId() {
-		return prodId;
-	}
-
-	public void setProdId(String prodId) {
 		this.prodId = prodId;
-	}
-
-	public String getProdNm() {
-		return prodNm;
-	}
-
-	public void setProdNm(String prodNm) {
 		this.prodNm = prodNm;
-	}
-
-	public String getNtnlOutnetVcTlkQnt() {
-		return ntnlOutnetVcTlkQnt;
-	}
-
-	public void setNtnlOutnetVcTlkQnt(String ntnlOutnetVcTlkQnt) {
 		this.ntnlOutnetVcTlkQnt = ntnlOutnetVcTlkQnt;
-	}
-
-	public String getBillMidCtgCd() {
-		return billMidCtgCd;
-	}
-
-	public void setBillMidCtgCd(String billMidCtgCd) {
 		this.billMidCtgCd = billMidCtgCd;
-	}
-
-	public String getBillMidCtgNm() {
-		return billMidCtgNm;
-	}
-
-	public void setBillMidCtgNm(String billMidCtgNm) {
 		this.billMidCtgNm = billMidCtgNm;
-	}
-
-	public String getTotUseQnt() {
-		return totUseQnt;
-	}
-
-	public void setTotUseQnt(String totUseQnt) {
 		this.totUseQnt = totUseQnt;
-	}
-
-	public String getNnRatUseQnt() {
-		return nnRatUseQnt;
-	}
-
-	public void setNnRatUseQnt(String nnRatUseQnt) {
 		this.nnRatUseQnt = nnRatUseQnt;
-	}
-
-	public String getRatUseQnt() {
-		return ratUseQnt;
-	}
-
-	public void setRatUseQnt(String ratUseQnt) {
 		this.ratUseQnt = ratUseQnt;
-	}
-
-	public String getRatAmt() {
-		return ratAmt;
-	}
-
-	public void setRatAmt(String ratAmt) {
 		this.ratAmt = ratAmt;
-	}
-
-	public String getSvcTarif() {
-		return svcTarif;
-	}
-
-	public void setSvcTarif(String svcTarif) {
 		this.svcTarif = svcTarif;
-	}
-
-	public String getBigiDiv() {
-		return bigiDiv;
-	}
-
-	public void setBigiDiv(String bigiDiv) {
 		this.bigiDiv = bigiDiv;
 	}
-
 	
 }

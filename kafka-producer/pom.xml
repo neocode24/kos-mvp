@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.garage</groupId>
 	<artifactId>kafka-producer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v1.0</version>
 	<name>kafka-producer</name>
 	<description>Managing Kafka</description>
 
@@ -58,7 +58,7 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<configuration>
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<imageName>${docker.image.prefix}/${project.artifactId}:${project.version}</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>

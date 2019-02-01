@@ -2,19 +2,20 @@ version: '3'
 services:
   usagedata:
     #    build: ./retrieve-usagedata-svc
-    image: kos-mvp/usagedata
+    image: kos-mvp/usagedata:latest
     environment:
       target.service.name: usagedata-db:8080
       spring.redis.host: redis
     ports:
      - "8080:8080"
+#     - 8080-8082:8080
     links:
      - usagedata-db
      - redis
 
   usagedata-db:
     #    build: ./retrieve-usagedata-db-svc
-    image: kos-mvp/usagedata-db
+    image: kos-mvp/usagedata-db:latest
     environment:
       target.service.name: manage-cache:8080
       POSTGRES_ENV_IP: postgres
@@ -26,14 +27,14 @@ services:
 
   manage-cache:
     #    build: ./redis-cache-manager
-    image: kos-mvp/manage-cache
+    image: kos-mvp/manage-cache:latest
     environment: 
       spring.redis.host: redis
     links:
      - redis
 
   redis:
-    image: "redis:alpine"
+    image: "redis:latest"
 
   postgres:
     image: postgres
@@ -42,6 +43,8 @@ services:
      - POSTGRES_USER=kos_user
      - POSTGRES_PASSWORD=new1234!
      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    ports:
+     - "5432:5432"
     volumes:
       - data:/var/lib/postgresql/data
       # - ./data/data.sql:/docker-entrypoint-initdb.d/init.sql

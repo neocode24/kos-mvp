@@ -6,7 +6,7 @@ metadata:
     app: usagedata
 spec:
   rules:
-  - host: kos.169.56.74.2.nip.io
+  - host: kos-mvp.msa.kt.com
     http:
       paths:
       - path: /
