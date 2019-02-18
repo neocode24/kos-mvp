@@ -24,4 +24,14 @@
       <module name="usagedata-db" target="1.8" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="kafaka-consumer" options="-parameters" />
+      <module name="kafka-produce" options="-parameters" />
+      <module name="kafka-producer" options="-parameters" />
+      <module name="manage-cache" options="-parameters" />
+      <module name="usagedata" options="-parameters" />
+      <module name="usagedata-db" options="-parameters" />
+    </option>
+  </component>
 </project>

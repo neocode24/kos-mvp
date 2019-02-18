@@ -2,7 +2,7 @@ version: '3'
 services:
   usagedata:
     #    build: ./retrieve-usagedata-svc
-    image: kos-mvp/usagedata:latest
+    image: kos-mvp/usagedata:latest:v1.0
     environment:
       target.service.name: usagedata-db:8080
       spring.redis.host: redis
@@ -15,7 +15,7 @@ services:
 
   usagedata-db:
     #    build: ./retrieve-usagedata-db-svc
-    image: kos-mvp/usagedata-db:latest
+    image: kos-mvp/usagedata-db:latest:v1.0
     environment:
       target.service.name: manage-cache:8080
       POSTGRES_ENV_IP: postgres
@@ -27,7 +27,7 @@ services:
 
   manage-cache:
     #    build: ./redis-cache-manager
-    image: kos-mvp/manage-cache:latest
+    image: kos-mvp/manage-cache:latest:v1.0
     environment: 
       spring.redis.host: redis
     links:
