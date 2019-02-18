@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/retrieve-usagedata-svc/pom.xml" />
         <option value="$PROJECT_DIR$/retrieve-usagedata-db-svc/pom.xml" />
         <option value="$PROJECT_DIR$/kafka-producer/pom.xml" />
+        <option value="$PROJECT_DIR$/msa-sample/pom.xml" />
       </list>
     </option>
   </component>

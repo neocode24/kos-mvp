@@ -11,6 +11,7 @@
         <module name="kafka-produce" />
         <module name="kafka-producer" />
         <module name="manage-cache" />
+        <module name="msa-sample" />
         <module name="usagedata" />
         <module name="usagedata-db" />
       </profile>
@@ -20,6 +21,7 @@
       <module name="kafka-produce" target="1.8" />
       <module name="kafka-producer" target="1.8" />
       <module name="manage-cache" target="1.8" />
+      <module name="msa-sample" target="1.8" />
       <module name="usagedata" target="1.8" />
       <module name="usagedata-db" target="1.8" />
     </bytecodeTargetLevel>
@@ -30,6 +32,7 @@
       <module name="kafka-produce" options="-parameters" />
       <module name="kafka-producer" options="-parameters" />
       <module name="manage-cache" options="-parameters" />
+      <module name="msa-sample" options="-parameters" />
       <module name="usagedata" options="-parameters" />
       <module name="usagedata-db" options="-parameters" />
     </option>
