@@ -1,0 +1,10 @@
+{
+    "hosts": [
+      "usagedata.neocode24.svc.cluster.local"
+    ],
+    "CN": "usagedata.neocode24.svc.cluster.local",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    }
+}

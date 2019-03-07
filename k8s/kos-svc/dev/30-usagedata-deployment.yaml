@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: usagedata
-        image: ktis-bastion01.container.ipc.kt.com:5000/kos-mvp/usagedata:v1.0
+#        image: ktis-bastion01.container.ipc.kt.com:5000/kos-mvp/usagedata:v1.0
+        image: neocode24/usgaedata:v1.0
         imagePullPolicy: "Always"
         env:
          - name: target.service.name
