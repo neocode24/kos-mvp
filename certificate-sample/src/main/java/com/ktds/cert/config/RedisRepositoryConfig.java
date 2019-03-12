@@ -1,4 +1,4 @@
-package com.garage.manage.config;
+package com.ktds.cert.config;
 
 import io.lettuce.core.ReadFrom;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +30,8 @@ public class RedisRepositoryConfig {
 
         return new LettuceConnectionFactory(new RedisStandaloneConfiguration(redisHost, redisPort),
                 configuration);
-//        return new LettuceConnectionFactory(redisHost, redisPort);
+
+//        return new LettuceConnectionFactory(new RedisStandaloneConfiguration(redisHost, redisPort));
     }
 
     @Bean

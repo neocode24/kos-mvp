@@ -21,6 +21,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
 /**
  * @author 82022961
@@ -29,8 +31,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@RedisHash("redis")
 public class EchoBean {
 
+	@Id
 	private String echoStr;
 	
 	protected EchoBean() {

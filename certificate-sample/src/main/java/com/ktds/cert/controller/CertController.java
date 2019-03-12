@@ -20,6 +20,7 @@ package com.ktds.cert.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,9 @@ public class CertController {
 
 	@Autowired
     RestTemplate restTemplate;
+
+
+
 
 	@GetMapping("/url/{strUri}")
 	public ResponseEntity<String> callService(@PathVariable("strUri") String strUri) {
